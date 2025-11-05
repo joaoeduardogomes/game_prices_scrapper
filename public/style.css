@@ -1,0 +1,103 @@
+@import url('https://fonts.googleapis.com/css2?family=Elms+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+
+:root {
+    --color-1: #1C388C;
+    --color-2: #3876F2;
+    --color-3: #1D2F40;
+    --color-4: #496D8C;
+    --color-5: #BFCFD9;
+    --main-font: "Elms Sans", sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    color: #fff;
+    background-color: var(--color-5);
+    font-family: var(--main-font);
+}
+
+header {
+    width: 100vw;
+    padding: 1rem 0;
+    background-color: var(--color-4);
+}
+
+h1 {
+    text-align: center;
+}
+
+main {
+    margin: 2rem;
+}
+
+#update-btn {
+    display: block;
+    margin: 2rem auto;
+    width: 12rem;
+    height: 3rem;
+    background-color: var(--color-1);
+    color: #fff;
+    font-size: 1.4rem;
+    border: 2px solid var(--color-3);
+    border-radius: 16px;
+    cursor: pointer;
+    transition: all .2s ease;
+
+    &:hover {
+        background-color: transparent;
+        color: var(--color-3);
+        transform: scale(1.1);
+    }
+}
+
+#cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+}
+.card {
+    border: 2.5px solid var(--color-3);
+    border-radius: 16px;
+    width: 15rem;
+    padding-bottom: 1rem;
+    display: flex;
+    flex-direction: column;
+    place-content: center;
+    place-items: center;
+    background-color: var(--color-2);
+
+    p.game-name {
+        background-color: var(--color-3);
+        width: 100%;
+        padding: .5rem 0;
+        text-align: center;
+        font-weight: bold;
+        font-size: 1.2rem;
+        border-radius: 8px 8px 0 0;
+    }
+
+    img {
+        max-width: 100%;
+        margin-bottom: 1rem;
+        pointer-events: none;
+    }
+
+    p.marked {
+        text-decoration: line-through;
+        font-style: italic;
+    }
+}
+
+.normal-price, .current-price{
+    font-size: 1.1rem;
+    font-weight: 600;
+    letter-spacing: .2rem;
+        &:before {
+            content: "R$ "
+        }
+    }

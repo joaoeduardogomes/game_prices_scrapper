@@ -1,2 +1,2 @@
 # game_prices_scrapper
- A project to check videogame prices
+ A project to monitor videogames prices.

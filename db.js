@@ -7,20 +7,36 @@ const COLLECTION_NAME = "game-prices-scrapper"
 let client
 let db
 
+
+/**
+ * Establishes a connection to the MongoDB database.
+ * 
+ * @throws {Error} If the connection to the database fails.
+ * 
+ * @returns {Promise<MongoClient.Database>} A promise that resolves with the connected database.
+ */
 async function connectToDatabase() {
-    const uri = `mongodb+srv://joaoGomes:${password}@t3ste.ckcoclb.mongodb.net/`
-    
+    //const uri = `mongodb+srv://joaoGomes:${password}@t3ste.ckcoclb.mongodb.net/`
+    const uri = "mongodb://127.0.0.1:27017"
+
     if (db) return db
-    
+
     try {
 
-        client = new MongoClient(uri)
+        client = new MongoClient(uri, {
+            serverApi: {
+                version: '1',
+                strict: true,
+                deprecationErrors: true,
+            },
+            serverSelectionTimeoutMS: 5000,
+        })
         await client.connect()
-        
+
         db = client.db(DB_NAME)
         return db
     }
-    catch(error) {
+    catch (error) {
         if (client)
             await client.close()
 
@@ -28,6 +44,13 @@ async function connectToDatabase() {
     }
 }
 
+/**
+ * Retrieves all games from the database.
+ * 
+ * @throws {Error} If the connection to the database has not been established.
+ * 
+ * @returns {Promise<Array<Object>>} A promise that resolves with an array of objects, each representing a game.
+ */
 async function getAllGames() {
     if (!db)
         throw new Error("Connection not established")
@@ -41,10 +64,10 @@ async function getAllGames() {
             }
         }
         const allGames = await gamesDb.find({}, projectionOptions).toArray()
-        
+
         return allGames
     }
-    catch(error) {
+    catch (error) {
         console.error("Error trying to access the database:", error)
         throw error
     }

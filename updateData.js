@@ -11,14 +11,14 @@ async function updateAllPrices() {
         const scraped = await scrapePSNGame(game.url)
 
         if (scraped) {
-            const slug = game.name.toLowerCase().replace(/\s+/g, '-')
+            const title = scraped.title
             await col.updateOne(
-                { id: game.id },
-                { $set: { slug, normalPrice: scraped.normalPrice, currentPrice: scraped.currentPrice } }
+                { _id: game._id },
+                { $set: { title, normalPrice: scraped.normalPrice, currentPrice: scraped.currentPrice } }
             )
-            console.log(`Updated: ${scraped.name} - R$${scraped.currentPrice}`)
+            console.log(`Updated: ${scraped.title} - R$${scraped.currentPrice}`)
         } else {
-            console.log(`Couldn't get data from ${game.name}`)
+            console.log(`Couldn't get data from ${game.title}`)
         }
     }
 }
@@ -26,3 +26,5 @@ async function updateAllPrices() {
 updateAllPrices()
     .then(() => console.log('Success'))
     .catch(err => console.error('Error:', err))
+
+    module.exports = { updateAllPrices }

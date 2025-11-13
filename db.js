@@ -59,12 +59,12 @@ async function getAllGames() {
     try {
 
         const gamesDb = db.collection(COLLECTION_NAME)
-        const projectionOptions = {
-            projection: {
-                _id: 0
-            }
-        }
-        const allGames = await gamesDb.find({}, projectionOptions).toArray()
+        // const projectionOptions = {
+        //     projection: {
+        //         _id: 0
+        //     }
+        // }
+        const allGames = await gamesDb.find({}).toArray()
 
         return allGames
     }

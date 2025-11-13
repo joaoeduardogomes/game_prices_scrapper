@@ -7,24 +7,35 @@ async function updateAllPrices() {
     const col = db.collection('game-prices-scrapper')
 
     for (const game of games) {
-        console.log(`[UPDATE] Checando ${game.name}...`)
+        console.log(`[CHECKING] ${game.name}...`)
         const scraped = await scrapePSNGame(game.url)
 
         if (scraped) {
-            const title = scraped.title
-            await col.updateOne(
-                { _id: game._id },
-                { $set: { title, normalPrice: scraped.normalPrice, currentPrice: scraped.currentPrice } }
-            )
-            console.log(`Updated: ${scraped.title} - R$${scraped.currentPrice}`)
+            const fieldsToUpdate = ["title", "normalPrice", "currentPrice"]
+
+            for (const field of fieldsToUpdate) {
+                await checkAndUpdate(col, game, field, game[field], scraped[field])
+            }
         } else {
             console.log(`Couldn't get data from ${game.title}`)
         }
     }
 }
 
+async function checkAndUpdate(col, game, fieldName, oldValue, newValue) {
+    if (oldValue === newValue)
+        return
+
+    await col.updateOne(
+        { _id: game._id },
+        { $set: { [fieldName]: newValue } }
+    )
+
+    console.log(`[UPDATE] Changed ${fieldName}: ${oldValue} → ${newValue}`)
+}
+
 updateAllPrices()
     .then(() => console.log('Success'))
     .catch(err => console.error('Error:', err))
 
-    module.exports = { updateAllPrices }
+module.exports = { updateAllPrices }

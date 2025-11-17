@@ -1,5 +1,5 @@
-const { getAllGames } = require('../db')
-const { updateAllPrices } = require('../updateData')
+const { getAllGames } = require('../scripts/db')
+const { updateAllPrices } = require('../scripts/updateData')
 
 async function fetchGames() {
     return await getAllGames()

@@ -1,6 +1,6 @@
 const express = require('express')
 const path = require('path')
-const { connectToDatabase } = require('./db')
+const { connectToDatabase } = require('./scripts/db')
 const gameRoutes = require('./routes/gameRoutes')
 
 const app = express()

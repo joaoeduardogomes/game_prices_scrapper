@@ -6,6 +6,9 @@ async function loadGames() {
 }
 
 function normalizePrice(price) {
+    if (price === undefined)
+        return "not verified"
+    
     return price.toLocaleString('pt-BR', {
         minimumFractionDigits: 2,
         maximumFractionDigits: 2
@@ -18,8 +21,8 @@ async function createCard() {
     const cardsContainer = document.querySelector("#cards")
     
     for (const content of cardsData) {
-        const normalPrice = content.normalPrice
-        const currentPrice = content.currentPrice
+        const normalPrice = content.normalPrice || undefined
+        const currentPrice = content.currentPrice || undefined
 
         const lineThrough = +currentPrice < +normalPrice ? "line-through" : ""
 
@@ -31,7 +34,7 @@ async function createCard() {
         cardsContainer.innerHTML += `
             <div class="card">
                 <p class="game-name">
-                    ${content.title}
+                    ${content.title || content.name}
                 </p>
                 <img src="${content.cover}" alt="">
                 ${normalPriceHTML}

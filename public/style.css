@@ -90,17 +90,24 @@ main {
         pointer-events: none;
     }
 
-    p.marked {
+    p.line-through {
         text-decoration: line-through;
         font-style: italic;
     }
 }
 
 .normal-price, .current-price{
-    font-size: 1.1rem;
-    font-weight: 600;
+
     letter-spacing: .2rem;
         &:before {
             content: "R$ "
         }
     }
+.normal-price {
+    font-size: 0.8;
+    font-weight: 600;
+}
+.current-price {
+    font-size: 1.2rem;
+    font-weight: bold;
+}

@@ -16,16 +16,26 @@ async function createCard() {
     const cardsData = await loadGames()
 
     const cardsContainer = document.querySelector("#cards")
-
+    
     for (const content of cardsData) {
+        const normalPrice = content.normalPrice
+        const currentPrice = content.currentPrice
+
+        const lineThrough = +currentPrice < +normalPrice ? "line-through" : ""
+
+        const normalPriceHTML =
+            normalPrice !== currentPrice
+                ? `<p class="normal-price ${lineThrough}">${normalizePrice(normalPrice)}</p>`
+                : ""
+
         cardsContainer.innerHTML += `
             <div class="card">
                 <p class="game-name">
                     ${content.title}
                 </p>
                 <img src="${content.cover}" alt="">
-                <p class="normal-price">${normalizePrice(content.normalPrice)}</p>
-                <p class="current-price">${normalizePrice(content.currentPrice)}</p>
+                ${normalPriceHTML}
+                <p class="current-price">${normalizePrice(currentPrice)}</p>
             </div>
         `
     }

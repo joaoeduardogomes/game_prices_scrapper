@@ -34,8 +34,5 @@ async function checkAndUpdate(col, game, fieldName, oldValue, newValue) {
     console.log(`[UPDATE] Changed ${fieldName}: ${oldValue} → ${newValue}`)
 }
 
-updateAllPrices()
-    .then(() => console.log('Success'))
-    .catch(err => console.error('Error:', err))
 
 module.exports = { updateAllPrices }

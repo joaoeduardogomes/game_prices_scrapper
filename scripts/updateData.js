@@ -16,9 +16,13 @@ async function updateAllPrices() {
             for (const field of fieldsToUpdate) {
                 await checkAndUpdate(col, game, field, game[field], scraped[field])
             }
-        } else {
+
+        } 
+        else {
             console.log(`Couldn't get data from ${game.title}`)
         }
+        
+        await sleepRandom(2000, 5000)
     }
 }
 
@@ -33,6 +37,12 @@ async function checkAndUpdate(col, game, fieldName, oldValue, newValue) {
 
     console.log(`[UPDATE] Changed ${fieldName}: ${oldValue} → ${newValue}`)
 }
+
+function sleepRandom(min = 2000, max = 5000) {
+    const ms = Math.floor(Math.random() * (max - min + 1)) + min
+    return new Promise(resolve => setTimeout(resolve, ms))
+}
+
 
 
 module.exports = { updateAllPrices }

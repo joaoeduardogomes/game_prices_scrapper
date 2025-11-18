@@ -1,7 +1,6 @@
 const { MongoClient } = require('mongodb')
 require('dotenv').config()
 
-const password = process.env.PASSWORD
 const MONGO_URI = process.env.MONGO_URI
 const DB_NAME = "projects"
 const COLLECTION_NAME = "game-prices-scrapper"
@@ -17,7 +16,6 @@ let db
  * @returns {Promise<MongoClient.Database>} A promise that resolves with the connected database.
  */
 async function connectToDatabase() {
-    //const uri = `mongodb+srv://joaoGomes:${password}@t3ste.ckcoclb.mongodb.net/`
     const uri = MONGO_URI
 
     if (db) return db

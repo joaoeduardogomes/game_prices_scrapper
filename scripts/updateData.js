@@ -22,7 +22,7 @@ async function updateAllPrices() {
             console.log(`Couldn't get data from ${game.title}`)
         }
         
-        await sleepRandom(2000, 5000)
+        await sleepRandom(300, 1000)
     }
 }
 

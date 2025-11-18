@@ -32,14 +32,14 @@ async function createCard() {
                 : ""
 
         cardsContainer.innerHTML += `
-            <div class="card">
+            <a class="card" href="${content.url}" target="_blank">
                 <p class="game-name">
                     ${content.title || content.name}
                 </p>
                 <img src="${content.cover}" alt="">
                 ${normalPriceHTML}
                 <p class="current-price">${normalizePrice(currentPrice)}</p>
-            </div>
+            </a>
         `
     }
 }

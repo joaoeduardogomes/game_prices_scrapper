@@ -22,7 +22,7 @@ async function startApp() {
         await connectToDatabase()
 
         app.listen(PORT, () => {
-            console.log(`[Express] Running at http://localhost:${PORT}`)
+            console.log(`[Express] Running at port ${PORT}`)
             console.log('----------------------------------------------')
         })
     } catch (error) {

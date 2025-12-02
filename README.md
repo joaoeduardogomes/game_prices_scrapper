@@ -50,6 +50,9 @@ Each issue arrived with its own little storm, but I tackled them one at a time, 
 
 4. Click Update to trigger the scraping process — data updates automatically once everything settles.
 
+---
+A web version of this project is hosted on [Render](https://psn-personal-wishlist.onrender.com/).   
+
 
 ## License
 ![MIT license](https://img.shields.io/badge/License-MIT-%20?link=https%3A%2F%2Fchoosealicense.com%2Flicenses%2Fmit%2F)

@@ -22,7 +22,7 @@ async function updateAllPrices() {
             console.log(`Couldn't get data from ${game.title}`)
         }
         
-        await sleepRandom(300, 1000)
+        await sleepRandom(0, 50)
     }
 }
 
@@ -38,7 +38,7 @@ async function checkAndUpdate(col, game, fieldName, oldValue, newValue) {
     console.log(`[UPDATE] Changed ${fieldName}: ${oldValue} → ${newValue}`)
 }
 
-function sleepRandom(min = 2000, max = 5000) {
+function sleepRandom(min = 300, max = 1000) {
     const ms = Math.floor(Math.random() * (max - min + 1)) + min
     return new Promise(resolve => setTimeout(resolve, ms))
 }

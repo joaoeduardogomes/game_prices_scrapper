@@ -18,6 +18,12 @@ function normalizePrice(price) {
 async function createCard() {
     const cardsData = await loadGames()
 
+    cardsData.sort((a, b) => {
+        const priceA = Number(a.currentPrice ?? Infinity)
+        const priceB = Number(b.currentPrice ?? Infinity)
+        return priceA - priceB
+    })
+
     const cardsContainer = document.querySelector("#cards")
     
     for (const content of cardsData) {

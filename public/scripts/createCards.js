@@ -42,7 +42,7 @@ async function createCard() {
                 <p class="game-name">
                     ${content.title || content.name}
                 </p>
-                <img src="${content.cover}" alt="">
+                <img src="${content.imageUrl}" alt="">
                 ${normalPriceHTML}
                 <p class="current-price">${normalizePrice(currentPrice)}</p>
             </a>

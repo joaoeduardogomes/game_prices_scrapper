@@ -11,7 +11,7 @@ async function updateAllPrices() {
         const scraped = await scrapePSNGame(game.url)
 
         if (scraped) {
-            const fieldsToUpdate = ["title", "normalPrice", "currentPrice"]
+            const fieldsToUpdate = ["title", "normalPrice", "currentPrice", "imageUrl"]
 
             for (const field of fieldsToUpdate) {
                 await checkAndUpdate(col, game, field, game[field], scraped[field])

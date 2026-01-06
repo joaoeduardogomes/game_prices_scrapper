@@ -28,7 +28,20 @@ async function scrapePSNGame(url) {
         const currentPrice = parsePrice(currentPriceText)
         const normalPrice = parsePrice(normalPriceText) || currentPrice
 
-        return { title, normalPrice, currentPrice }
+        let imageUrl =
+            $('meta[property="og:image"]').attr('content') ||
+            $('meta[name="twitter:image"]').attr('content')
+
+        if (!imageUrl) {
+            $('script[type="application/ld+json"]').each((_, el) => {
+                try {
+                    const json = JSON.parse($(el).html())
+                    if (json.image) imageUrl = Array.isArray(json.image) ? json.image[0] : json.image
+                } catch {}
+            })
+        }
+
+        return { title, normalPrice, currentPrice, imageUrl }
     }
     catch (error) {
         console.error(`[Scrapper PSN] Erro ao acessar ${url}:`, error.message)

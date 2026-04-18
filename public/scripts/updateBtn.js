@@ -13,4 +13,8 @@ updateBtn.addEventListener("click", async () => {
     }
 
     location.reload()
+<<<<<<< ours
 })
+=======
+})
+>>>>>>> theirs
